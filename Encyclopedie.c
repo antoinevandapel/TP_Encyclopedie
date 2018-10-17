@@ -6,8 +6,8 @@ typedef struct Article Article;
 struct Article
 {
     int id;
-    string titre;
-    string contenu;
+    char * titre;
+    char * contenu;
 };
 
 typedef struct Encyclopedie Encyclopedie;
