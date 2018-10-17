@@ -1,0 +1,8 @@
+//#include "LectureFichier.c"
+
+#ifndef LECTUREFICHIER_H_INCLUDED
+#define LECTUREFICHIER_H_INCLUDED
+
+
+
+#endif // LECTUREFICHIER_H_INCLUDED

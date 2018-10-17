@@ -13,7 +13,7 @@ struct Article
 typedef struct Encyclopedie Encyclopedie;
 struct Encyclopedie
 {
-    Article article;
+    Article * article;
     Encyclopedie * up;
     Encyclopedie * left;
     Encyclopedie * right;
