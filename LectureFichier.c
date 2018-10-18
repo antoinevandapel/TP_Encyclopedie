@@ -3,4 +3,11 @@
 #include <string.h>
 #include "LectureFichier.h"
 
+/*Encyclopedie * lire_fichier(Encyclopedie * e, char * nom){
+    FILE* fichier = NULL;
 
+    fichier = fopen("B46_", "r+");
+
+    return 0;
+}
+*/
