@@ -1,6 +1,22 @@
 #ifndef ENCYCLOPEDIE_H_INCLUDED
 #define ENCYCLOPEDIE_H_INCLUDED
-#include "Encyclopedie.c"
+
+typedef struct Article Article;
+struct Article
+{
+    int id;
+    char * titre;
+    char * contenu;
+};
+
+typedef struct Encyclopedie Encyclopedie;
+struct Encyclopedie
+{
+    Article * article;
+    Encyclopedie * up;
+    Encyclopedie * left;
+    Encyclopedie * right;
+};
 
 Encyclopedie * creer_encyclopedie();
 Encyclopedie * inserer(Encyclopedie * e, Article * a);
