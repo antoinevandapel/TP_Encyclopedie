@@ -31,6 +31,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Chainlist.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Encyclopedie.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Encyclopedie.h" />
+		<Unit filename="LectureFichier.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LectureFichier.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
