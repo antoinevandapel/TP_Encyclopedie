@@ -12,17 +12,17 @@ struct Article
 typedef struct Encyclopedie Encyclopedie;
 struct Encyclopedie
 {
-    Article * article;
+    Article article;
     Encyclopedie * up;
     Encyclopedie * left;
     Encyclopedie * right;
 };
 
 Encyclopedie * creer_encyclopedie();
-Encyclopedie * inserer(Encyclopedie * e, Article * a);
+Encyclopedie * inserer(Encyclopedie * e, Article a);
 Encyclopedie * supprimer(Encyclopedie * e, int id);
-char * rechercher_article(Encyclopedie * e, int id);
-Encyclopedie * rechercher_article_plein_texte(Encyclopedie * e, char * mot);
+Article rechercher_article(Encyclopedie * e, int id);
+Encyclopedie * rechercher_article_plein_texte(Encyclopedie * e, Encyclopedie * res, char * mot);
 void detruire_bibliotheque(Encyclopedie * e);
 void afficher(Encyclopedie * e);
 

@@ -6,40 +6,29 @@
 
 int main()
 {
-    Encyclopedie * e = creer_encyclopedie();
-    Article * a = (Article *) malloc(sizeof(Article));
+    Encyclopedie * e=NULL;
+    Article * a = (Article*)malloc(sizeof(Article));
     a->id=1;
-    a->contenu="tata toto";
-    a->titre="Titre 1";
+    a->contenu="c";
+    a->titre="";
+    e=inserer(e, *a);
+    a->id=4;
+    a->contenu="c";
+    a->titre="";
+    e=inserer(e,*a);
+    a->id=2;
+    a->contenu="toz";
+    a->titre="";
+    e=inserer(e,*a);
 
-    Article * b = (Article *) malloc(sizeof(Article));
-    b->id=2;
-    b->contenu="toto titi";
-    b->titre="Titre 2";
+    //afficher(e);
 
-    Article * c = (Article *) malloc(sizeof(Article));
-    c->id=3;
-    c->contenu="toto titi tata";
-    c->titre="Titre 3";
+    Article b = rechercher_article(e,2);
 
-    e=inserer(e,a);
-    e=inserer(e,b);
-    e=inserer(e,c);
-    afficher(e);
+    Encyclopedie * toz=NULL;
+    toz=rechercher_article_plein_texte(e,toz,"c");
 
-    //e=supprimer(e,2);
-    //printf("%d\n",e->article->id);
-    //printf("%d\n",e->right->article->id);
-
-    //printf("%s\n", rechercher_article(e,3));
-
-    printf("\nRecherche\n");
-    Encyclopedie * search = creer_encyclopedie();
-    search = rechercher_article_plein_texte(e,"titi");
-    afficher(search);
-
-    printf("\nDestruction de la table");
-    detruire_bibliotheque(e);
-
-    return 0;
+    afficher(toz);
+    //printf()
+    return ;
 }

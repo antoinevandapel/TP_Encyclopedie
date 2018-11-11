@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "Encyclopedie.h"
-
+/*
 Encyclopedie * creer_encyclopedie(){
     Encyclopedie * e = (Encyclopedie *) malloc(sizeof(Encyclopedie));
     e->article=NULL;
@@ -90,3 +90,4 @@ void afficher(Encyclopedie * e){
         afficher(e);
     }
 }
+*/
