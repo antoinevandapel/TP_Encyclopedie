@@ -8,7 +8,6 @@ Encyclopedie * creer_encyclopedie(){
     e->article.id=-1;
     e->left=NULL;
     e->right=NULL;
-    e->up=NULL;
 
     return e;
 }
@@ -142,11 +141,11 @@ void afficher(Encyclopedie* e)
     if (e == NULL)
         return;
     /* display node data */
-    printf("%d",e->article.id);
+    printf("%d - %s",e->article.id, e->article.titre);
     if(e->left != NULL)
-        printf("(L:%d)",e->left->article.id);
+        printf("(L:%d - %s)",e->left->article.id, e->left->article.titre);
     if(e->right != NULL)
-        printf("(R:%d)",e->right->article.id);
+        printf("(R:%d - %s)",e->right->article.id, e->right->article.titre);
     printf("\n");
 
     afficher(e->left);

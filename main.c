@@ -7,6 +7,7 @@
 int main()
 {
     Encyclopedie * e=NULL;
+    /*
     Article * a = (Article*)malloc(sizeof(Article));
     a->id=1;
     a->contenu="c";
@@ -29,6 +30,10 @@ int main()
     toz=rechercher_article_plein_texte(e,toz,"c");
 
     afficher(toz);
+    */
+    e=integrer_article(e, "B46_wikipedia_test.dat");
+    printf("%d", e);
+    afficher(e);
     //printf()
     return ;
 }
