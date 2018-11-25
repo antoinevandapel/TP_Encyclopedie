@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Encyclopedie.h"
-
-Encyclopedie* integrer_article(Encyclopedie * e, char * c){
+#include "EncyclopedieBST.h"
+/*
+EncyclopedieBST* integrer_article(EncyclopedieBST * e, char * c){
 
     Article * art = (Article *)malloc(sizeof(Article));
     FILE* fic ;
@@ -19,7 +19,6 @@ Encyclopedie* integrer_article(Encyclopedie * e, char * c){
         printf("Pb d'ouverture du fichier!");
         exit(0);
     }
-    /* Lecture du fichier par fgets+sscanf (la fin de fichier est atteinte quand fgets renvoie NULL) : */
     while ( fgets( ligne, 15000, fic) != NULL )
     {
         token = strtok(ligne, "|");
@@ -37,3 +36,4 @@ Encyclopedie* integrer_article(Encyclopedie * e, char * c){
     fclose( fic ) ;
     return e;
 }
+*/
