@@ -17,49 +17,48 @@ EncyclopedieBST * insererBST(EncyclopedieBST *e, Article a)
 {
 
     if(e == NULL)
-    {
         e = creer_encyclopedieBST();
+    if(e->article.id==-1){
         e->article=a;
+        return e;
+    }
         //printf("ID :%d\n", e->article.id);
-    }
-    else
+    int is_left  = 0;
+    int r        = 0;
+    EncyclopedieBST* curseur = e;
+    EncyclopedieBST* prev   = NULL;
+
+    while(curseur != NULL)
     {
-        int is_left  = 0;
-        int r        = 0;
-        EncyclopedieBST* curseur = e;
-        EncyclopedieBST* prev   = NULL;
-
-        while(curseur != NULL)
+    //Compare id article par rapport a celui du curseur
+        if(a.id>curseur->article.id) r=1;
+        else if(a.id<curseur->article.id) r=-1;
+        else {
+            return e;
+        }
+        prev = curseur;
+        if(r < 0)
         {
-            //Compare id article par rapport a celui du curseur
-            if(a.id>curseur->article.id) r=1;
-            else if(a.id<curseur->article.id) r=-1;
-            else {
-                return e;
-            }
-            prev = curseur;
-            if(r < 0)
-            {
-                is_left = 1;
-                curseur = curseur->left;
-            }
-            else if(r > 0)
-            {
-                is_left = 0;
-                curseur = curseur->right;
-            }
-
+            is_left = 1;
+            curseur = curseur->left;
         }
-        if(is_left){
-            prev->left = creer_encyclopedieBST();
-            prev->left->article = a;
-        }
-        else{
-            prev->right = creer_encyclopedieBST();
-            prev->right->article = a;
+        else if(r > 0)
+        {
+            is_left = 0;
+            curseur = curseur->right;
         }
 
     }
+    if(is_left){
+        prev->left = creer_encyclopedieBST();
+        prev->left->article = a;
+    }
+    else{
+        prev->right = creer_encyclopedieBST();
+        prev->right->article = a;
+    }
+
+
     return e;
 }
 
@@ -114,6 +113,10 @@ EncyclopedieBST * supprimerBST(EncyclopedieBST* e, int id)
 
 Article rechercher_articleBST(EncyclopedieBST *e ,int id)
 {
+    Article err;
+    err.contenu="";
+    err.id=-1;
+    err.titre="";
     if(e == NULL)
         return;
 
@@ -132,7 +135,7 @@ Article rechercher_articleBST(EncyclopedieBST *e ,int id)
         else
             return cursor->article;
     }
-    return cursor->article;
+    return err;
 
 }
 
@@ -140,13 +143,22 @@ void afficherBST(EncyclopedieBST* e)
 {
     if (e == NULL)
         return;
+    Article tmp = e->article;
     /* display node data */
-    printf("%d - %s",e->article.id, e->article.titre);
-    if(e->left != NULL)
-        printf("(L:%d - %s)",e->left->article.id, e->left->article.titre);
-    if(e->right != NULL)
-        printf("(R:%d - %s)",e->right->article.id, e->right->article.titre);
-    printf("\n");
+    printf("\n---- Article n%d----",e->article.id);
+    printf("\nTitre : %s",e->article.titre);
+    printf("\nContenu : %s\n",e->article.contenu);
+//
+//    if(e->left != NULL){
+//        printf("\n---- Article n%d----",e->left->article.id);
+//        printf("\nTitre : %s",e->left->article.titre);
+//        printf("\nContenu : %s\n",e->left->article.contenu);
+//    }
+//    if(e->right != NULL){
+//        printf("\n---- Article n%d----",e->right->article.id);
+//        printf("\nTitre : %s",e->right->article.titre);
+//        printf("\nContenu : %s\n",e->right->article.contenu);
+//    }
 
     afficherBST(e->left);
     afficherBST(e->right);

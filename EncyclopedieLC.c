@@ -51,17 +51,20 @@ ptrLC supprimerLC(ptrLC e, int id){
     return e;
 }
 
-char * rechercher_articleLC(ptrLC e, int id){
+Article rechercher_articleLC(ptrLC e, int id){
     Article tmp;
+    tmp.contenu="";
+    tmp.titre="";
+    tmp.id=-1;
     //printf("passage");
     if(e->article.id==id){
         tmp=e->article;
     }
     else if(e->suivant!=NULL){
-        tmp.contenu=rechercher_articleLC(e->suivant,id);
+        tmp=rechercher_articleLC(e->suivant,id);
     }
 
-    return tmp.contenu;
+    return tmp;
 }
 
 ptrLC rechercher_article_plein_texteLC(ptrLC e, char * mot){
