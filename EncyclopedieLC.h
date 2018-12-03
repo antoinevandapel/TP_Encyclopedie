@@ -12,7 +12,7 @@ typedef struct EncyclopedieLC
 ptrLC creer_encyclopedieLC();
 ptrLC insererLC(ptrLC e, Article a);
 ptrLC supprimerLC(ptrLC e, int id);
-char * rechercher_articleLC(ptrLC e, int id);
+Article rechercher_articleLC(ptrLC e, int id);
 ptrLC rechercher_article_plein_texteLC(ptrLC e, char * mot);
 void detruire_bibliothequeLC(ptrLC e);
 void afficherLC(ptrLC e);
