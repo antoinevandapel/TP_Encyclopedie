@@ -5,28 +5,27 @@
 
 ptrLC creer_encyclopedieLC(){
     ptrLC e = (ptrLC) malloc(sizeof(EncyclopedieLC));
-    e->article.id=NULL;
-    e->article.contenu=NULL;
-    e->article.titre=NULL;
+    e->article.id=-1;
     e->suivant=NULL;
     return e;
 }
 
 ptrLC insererLC(ptrLC e, Article a){
-    ptrLC tmp;
-    if(e->article.id==NULL){
-        e->article = a;
-        e->suivant=NULL;
-    }
-    else if(e->suivant!=NULL){
-        tmp=insererLC(e->suivant, a);
+    ptrLC tmp = creer_encyclopedieLC();
+
+    printf("id : %d",a.id);
+    printf("titre : %s",a.titre);
+    printf("contenu : %s",a.contenu);
+
+    tmp->article = a;
+
+    if(e->article.id==-1){
+        tmp->suivant = NULL;
     }
     else{
-        e->suivant=(ptrLC) malloc(sizeof(EncyclopedieLC));
-        e->suivant->article=a;
-        e->suivant->suivant=NULL;
+        tmp->suivant=e;
     }
-    return e;
+    return tmp;
 }
 
 ptrLC supprimerLC(ptrLC e, int id){
@@ -92,7 +91,7 @@ void detruire_bibliothequeLC(ptrLC e){
 }
 
 void afficherLC(ptrLC e){
-    printf("\n---- Article n%d----",e->article.id);
+    printf("\n---- Article %d----",e->article.id);
     printf("\nTitre : %s",e->article.titre);
     printf("\nContenu : %s\n",e->article.contenu);
 

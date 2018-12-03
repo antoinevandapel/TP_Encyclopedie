@@ -44,6 +44,10 @@ void affichageMenu2(int type)
     EncyclopedieBST * bst= creer_encyclopedieBST();
     EncyclopedieHT * ht= creer_encyclopedieHT(5);
 
+    EncyclopedieLC * searchLC = creer_encyclopedieLC();
+    EncyclopedieBST * searchBST= creer_encyclopedieBST();
+    EncyclopedieHT * searchHT = creer_encyclopedieHT(5);
+
     int choixMenu;
     int idSel = 0;
     char * motRech = (char *)malloc (25*sizeof(char));
@@ -75,15 +79,19 @@ void affichageMenu2(int type)
         case 1:
             printf("Ajout d'un article\n\n");
             int idArticle = 0;
-            char * titreArticle = (char *)malloc (25*sizeof(char));
-            char * contenuArticle = (char *)malloc (200*sizeof(char)); ;
+            char  titreArticle[25];
+            char  contenuArticle[256];
 
             printf("Id de l'article :\n");
             scanf("%d",&idArticle);
             printf("Titre de l'article :\n");
-            scanf("%s",titreArticle);
+            //scanf("%s",titreArticle);
+            fflush(stdin);
+            fgets(titreArticle, 25, stdin);
             printf("Contenu de l'article :\n");
-            scanf("%s",contenuArticle);
+            fgets(contenuArticle, 256, stdin);
+            //scanf("%s",contenuArticle);
+            //fgets(contenuArticle, 256, stdin);
 
             Article * a = (Article*)malloc(sizeof(Article));
 
@@ -137,53 +145,91 @@ void affichageMenu2(int type)
             break;
         case 4:
             printf("Supprimer un article\n");
-            printf("id de l'article a supprimer\n");
+            printf("Id de l'article a supprimer\n");
             scanf("%d",&idSel);
-            if(type == 1){
-                lc = supprimerLC(lc,idSel);
+            if(encycloCreated >= 1){
+                if(type == 1){
+                    lc = supprimerLC(lc,idSel);
+                    encycloCreated--;
+                }
+                else if(type == 2){
+                    bst = supprimerBST(bst,idSel);
+                    encycloCreated--;
+                }
+                else if(type == 3){
+                    ht = supprimerHT(ht,idSel);
+                    encycloCreated--;
+                }
             }
-            else if(type == 2){
-                bst = supprimerBST(bst,idSel);
-            }
-            else if(type == 3){
-                ht = supprimerHT(ht,idSel);
+            else{
+                printf("Aucun encyclopedie n'a ete cree");
             }
             break;
         case 5:
             printf("Recherche par id\n");
             printf("Id de l'article a rechercher : ");
             scanf("%d",&idSel);
-            if(type == 1){
-                *a = rechercher_articleLC(lc,idSel);
+            if(encycloCreated >= 1){
+                if(type == 1){
+                    *a = rechercher_articleLC(lc,idSel);
+                }
+                else if(type == 2){
+                    *a = rechercher_articleBST(bst,idSel);
+                }
+                else if(type == 3){
+                    *a = rechercher_articleHT(ht,idSel);
+                }
+                printf("\nArticle trouve :\n");
+                printf("\n---- Article %d----",a->id);
+                printf("\nTitre : %s",a->titre);
+                printf("\nContenu : %s\n",a->contenu);
+                printf("\n");
             }
-            else if(type == 2){
-                *a = rechercher_articleBST(bst,idSel);
+            else{
+                printf("Aucun encyclopedie n'a ete cree");
             }
-            else if(type == 3){
-                *a = rechercher_articleHT(ht,idSel);
-            }
-            printf("\nArticle trouve :\n");
-            printf("\n---- Article %d----",a->id);
-            printf("\nTitre : %s",a->titre);
-            printf("\nContenu : %s\n",a->contenu);
-            printf("\n");
             break;
         case 6:
             printf("Recherche par mot\n");
             printf("Mot a rechercher : ");
             scanf("%s",motRech);
-            if(type == 1){
-                lc = rechercher_article_plein_texteLC(lc, motRech);
+            if(encycloCreated >= 1){
+                if(type == 1){
+                    searchLC = rechercher_article_plein_texteLC(lc, motRech);
+                    afficherLC(searchLC);
+                }
+                else if(type == 2){
+                    searchBST = rechercher_article_plein_texteBST(bst,searchBST, motRech);
+                    afficherBST(searchBST);
+                }
+                else if(type == 3){
+                    searchHT = rechercher_article_plein_texteHT(ht,searchHT,motRech);
+                    afficherHT(searchHT);
+                }
             }
-            else if(type == 2){
-                //*a = rechercher_articleBST(bst,idSel);
-            }
-            else if(type == 3){
-                //*a = rechercher_articleHT(ht,idSel);
+            else{
+                printf("Aucun encyclopedie n'a ete cree");
             }
             break;
         case 7:
             printf("Destruction de la bibliotheque");
+            if(encycloCreated >= 1){
+                if(type == 1){
+                    detruire_bibliothequeLC(lc);
+                    encycloCreated = 0;
+                }
+                else if(type == 2){
+                    detruire_bibliothequeBST(bst);
+                    encycloCreated = 0;
+                }
+                else if(type == 3){
+                    detruire_bibliothequeHT(ht);
+                    encycloCreated = 0;
+                }
+            }
+            else{
+                printf("Aucun encyclopedie n'a ete cree");
+            }
             break;
         case 8:
             affichageMenu();
