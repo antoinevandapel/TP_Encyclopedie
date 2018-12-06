@@ -13,10 +13,6 @@ ptrLC creer_encyclopedieLC(){
 ptrLC insererLC(ptrLC e, Article a){
     ptrLC tmp = creer_encyclopedieLC();
 
-    printf("id : %d",a.id);
-    printf("titre : %s",a.titre);
-    printf("contenu : %s",a.contenu);
-
     tmp->article = a;
 
     if(e->article.id==-1){
@@ -25,13 +21,14 @@ ptrLC insererLC(ptrLC e, Article a){
     else{
         tmp->suivant=e;
     }
+
     return tmp;
 }
 
 ptrLC supprimerLC(ptrLC e, int id){
     ptrLC tmp;
     if(e->article.id==id){
-        printf("trouvé en 1");
+        printf("trouvé en 1\n");
         tmp=e->suivant;
         free(e);
         e=tmp;

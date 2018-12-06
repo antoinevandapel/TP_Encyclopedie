@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "LectureFichier.h"
 #include "EncyclopedieLC.h"
 #include "EncyclopedieHT.h"
 #include "EncyclopedieBST.h"
@@ -10,6 +11,11 @@ int encycloCreated = 0;
 void affichageMenu()
 {
     int choixMenu;
+
+    ptrLC lc= creer_encyclopedieLC();
+    EncyclopedieBST * bst= creer_encyclopedieBST();
+    EncyclopedieHT * ht= creer_encyclopedieHT(5);
+
 
     printf("---Menu---\n\n");
     printf("1.Liste chainee\n");
@@ -22,15 +28,15 @@ void affichageMenu()
     {
     case 1:
         printf("Vous avez choisis la liste chainee\n\n");
-        affichageMenu2(1);
+        affichageMenu2(1,lc,bst,ht);
         break;
     case 2:
         printf("Vous avez choisis l'arbre de recherche\n");
-        affichageMenu2(2);
+        affichageMenu2(2,lc,bst,ht);
         break;
     case 3:
         printf("Vous avez choisis la table de hashage\n");
-        affichageMenu2(3);
+        affichageMenu2(3,lc,bst,ht);
         break;
     default:
         affichageMenu();
@@ -38,12 +44,8 @@ void affichageMenu()
     }
 }
 
-void affichageMenu2(int type)
+void affichageMenu2(int type, ptrLC lc, EncyclopedieBST * bst, EncyclopedieHT * ht)
 {
-    ptrLC lc= creer_encyclopedieLC();
-    EncyclopedieBST * bst= creer_encyclopedieBST();
-    EncyclopedieHT * ht= creer_encyclopedieHT(5);
-
     EncyclopedieLC * searchLC = creer_encyclopedieLC();
     EncyclopedieBST * searchBST= creer_encyclopedieBST();
     EncyclopedieHT * searchHT = creer_encyclopedieHT(5);
@@ -79,26 +81,23 @@ void affichageMenu2(int type)
         case 1:
             printf("Ajout d'un article\n\n");
             int idArticle = 0;
-            char  titreArticle[25];
-            char  contenuArticle[256];
+            char * titreArticle = (char *) calloc(sizeof(char), 25);
+            char * contenuArticle = (char *) calloc(sizeof(char), 25);
 
             printf("Id de l'article :\n");
             scanf("%d",&idArticle);
-            printf("Titre de l'article :\n");
-            //scanf("%s",titreArticle);
+            printf("Titre de l'article (25 caracteres maximum) :\n");
             fflush(stdin);
             fgets(titreArticle, 25, stdin);
-            printf("Contenu de l'article :\n");
+
+            printf("Contenu de l'article (256 caracteres maximum) :\n");
             fgets(contenuArticle, 256, stdin);
-            //scanf("%s",contenuArticle);
-            //fgets(contenuArticle, 256, stdin);
 
             Article * a = (Article*)malloc(sizeof(Article));
 
             a->id=idArticle;
             a->contenu=contenuArticle;
             a->titre=titreArticle;
-
 
             if(type == 1){
                 lc = insererLC(lc,*a);
@@ -162,7 +161,7 @@ void affichageMenu2(int type)
                 }
             }
             else{
-                printf("Aucun encyclopedie n'a ete cree");
+                printf("Aucun encyclopedie n'a ete cree\n");
             }
             break;
         case 5:
@@ -186,7 +185,7 @@ void affichageMenu2(int type)
                 printf("\n");
             }
             else{
-                printf("Aucun encyclopedie n'a ete cree");
+                printf("Aucun encyclopedie n'a ete cree\n");
             }
             break;
         case 6:
@@ -232,10 +231,11 @@ void affichageMenu2(int type)
             }
             break;
         case 8:
+            encycloCreated = 0;
             affichageMenu();
             break;
         default:
-            affichageMenu2(type);
+            affichageMenu2(type,lc,bst,ht);
             break;
         }
     }
@@ -243,8 +243,11 @@ void affichageMenu2(int type)
 
 int main()
 {
-    affichageMenu();
+    //affichageMenu();
 
+    ptrLC lc= creer_encyclopedieLC();
+
+    lc = lire_fichier();
 
     /** Séparation **/
     /*EncyclopedieBST * e= creer_encyclopedieBST();

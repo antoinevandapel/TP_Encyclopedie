@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1543761936 source:c:\users\ant92\desktop\github\tp_encyclopedie\article.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Article.h"
+
+1543761936 c:\users\ant92\desktop\github\tp_encyclopedie\article.h
+
+1543761936 source:c:\users\ant92\desktop\github\tp_encyclopedie\chainlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Encyclopedie.h"
+
+1539938869 c:\users\ant92\desktop\github\tp_encyclopedie\encyclopedie.h
+
+1539869349 source:c:\users\ant92\desktop\github\tp_encyclopedie\encyclopedie.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Encyclopedie.h"
+
+1543761936 source:c:\users\ant92\desktop\github\tp_encyclopedie\encyclopediebst.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EncyclopedieBST.h"
+
+1543761936 c:\users\ant92\desktop\github\tp_encyclopedie\encyclopediebst.h
+	"Article.h"
+
+1543761936 source:c:\users\ant92\desktop\github\tp_encyclopedie\encyclopedieht.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EncyclopedieHT.h"
+
+1543761936 c:\users\ant92\desktop\github\tp_encyclopedie\encyclopedieht.h
+	"EncyclopedieLC.h"
+
+1543764491 c:\users\ant92\desktop\github\tp_encyclopedie\encyclopedielc.h
+	"Article.h"
+
+1544085970 source:c:\users\ant92\desktop\github\tp_encyclopedie\encyclopedielc.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EncyclopedieLC.h"
+
+1544089548 source:c:\users\ant92\desktop\github\tp_encyclopedie\lecturefichier.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LectureFichier.h"
+	"EncyclopedieLC.h"
+	"EncyclopedieHT.h"
+	"EncyclopedieBST.h"
+
+1543761930 c:\users\ant92\desktop\github\tp_encyclopedie\lecturefichier.h
+
+1544089556 source:c:\users\ant92\desktop\github\tp_encyclopedie\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LectureFichier.h"
+	"EncyclopedieLC.h"
+	"EncyclopedieHT.h"
+	"EncyclopedieBST.h"
+
+1543761936 source:c:\users\ant92\desktop\github\tp_encyclopedie\parsor.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"EncyclopedieBST.h"
+

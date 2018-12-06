@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="Article.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Article.h" />
 		<Unit filename="Chainlist.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -38,10 +42,25 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Encyclopedie.h" />
+		<Unit filename="EncyclopedieBST.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="EncyclopedieBST.h" />
+		<Unit filename="EncyclopedieHT.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="EncyclopedieHT.h" />
+		<Unit filename="EncyclopedieLC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="EncyclopedieLC.h" />
 		<Unit filename="LectureFichier.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="LectureFichier.h" />
+		<Unit filename="Parsor.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
