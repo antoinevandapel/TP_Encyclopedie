@@ -48,7 +48,7 @@
 	<string.h>
 	"EncyclopedieLC.h"
 
-1544089548 source:c:\users\ant92\desktop\github\tp_encyclopedie\lecturefichier.c
+1544190014 source:c:\users\ant92\desktop\github\tp_encyclopedie\lecturefichier.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -57,9 +57,12 @@
 	"EncyclopedieHT.h"
 	"EncyclopedieBST.h"
 
-1543761930 c:\users\ant92\desktop\github\tp_encyclopedie\lecturefichier.h
+1544187290 c:\users\ant92\desktop\github\tp_encyclopedie\lecturefichier.h
+	"EncyclopedieLC.h"
+	"EncyclopedieHT.h"
+	"EncyclopedieBST.h"
 
-1544089556 source:c:\users\ant92\desktop\github\tp_encyclopedie\main.c
+1544188091 source:c:\users\ant92\desktop\github\tp_encyclopedie\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

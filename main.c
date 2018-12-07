@@ -248,6 +248,7 @@ int main()
     ptrLC lc= creer_encyclopedieLC();
 
     lc = lire_fichier();
+    afficherLC(lc);
 
     /** Séparation **/
     /*EncyclopedieBST * e= creer_encyclopedieBST();
