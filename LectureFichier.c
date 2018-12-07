@@ -16,7 +16,7 @@ ptrLC lire_fichier(){
     tailleAllou = compteurLigne(nomFichier);
 
 
-    char str[80000];
+    char str[120000];
 
     if(fichier){
         char * element;
@@ -25,29 +25,33 @@ ptrLC lire_fichier(){
         int idArticle = 0;
         int i;
         int comptLigne=0;
-        while((fgets(str,tailleAllou[comptLigne],fichier)!=NULL)&&(comptLigne<=20)){
+        while((fgets(str,120000,fichier)!=NULL)){
+            //printf("%s", str);
             /*titreArticle = (char *) calloc(sizeof(char), 25);
             contenuArticle = (char *) calloc(sizeof(char), 50000);*/
-            element = strtok(str,"|");
             //printf("tailleAllou : %d\n",tailleAllou[comptLigne]);
             //printf("%s\n",element);
 
             Article * a = (Article*)malloc(sizeof(Article));
+            a->id=atoi(strtok(str,"|"));
+            printf("strtok id : %d\n", a->id);
+            i=0;
+                //element = strtok(NULL,"|");
 
-            a->id=atoi(element);
+                    //a->titre=(char *) malloc((sizeof(char)*strlen(element))+1);
+                    //strcpy(a->titre,element);
+                    titreArticle=strtok(NULL,"|");
+                    a->titre = (char*) malloc(sizeof(char)*strlen(titreArticle)+1);
+                    strcpy(a->titre, titreArticle);
+                    printf("strtok titre : %s\n", a->titre);
 
-            while(element!=NULL){
-                if(i==1){
-                    a->titre=(char *) malloc((sizeof(char)*strlen(element))+1);
-                    strcpy(a->titre,element);
-                }
-                else{
-                    a->contenu=(char *) malloc((sizeof(char)*strlen(element))+1);
-                    strcpy(a->contenu,element);
-                }
-                i++;
-                element = strtok(NULL,"|");
-            }
+                    //a->contenu=(char *) malloc((sizeof(char)*strlen(element))+1);
+                    //strcpy(a->contenu,element);
+                    contenuArticle=strtok(NULL,"|");
+                    a->contenu = (char*) malloc(sizeof(char)*strlen(contenuArticle)+1);
+                    strcpy(a->contenu, contenuArticle);
+                    printf("strtok contenu : %s\n", a->contenu);
+
 
            /*a->id=idArticle;
             a->titre = titreArticle;
@@ -58,6 +62,7 @@ ptrLC lire_fichier(){
             comptLigne++;
             i=0;
         }
+        printf("\n%d\n",comptLigne);
         //insererLC(lc, a);
     }
     else{
