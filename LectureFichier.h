@@ -6,7 +6,9 @@
 #ifndef LECTUREFICHIER_H_INCLUDED
 #define LECTUREFICHIER_H_INCLUDED
 
-ptrLC lire_fichier();
+ptrLC lire_fichierLC(char * nomFichier);
+EncyclopedieBST * lire_fichierBST(char * nomFichier);
+EncyclopedieHT * lire_fichierHT(char * nomFichier);
 int * compteurLigne(char * nomFichier);
 
 #endif // LECTUREFICHIER_H_INCLUDED

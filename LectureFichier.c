@@ -6,17 +6,16 @@
 #include "EncyclopedieHT.h"
 #include "EncyclopedieBST.h"
 
-ptrLC lire_fichier(){
+ptrLC lire_fichierLC(char * nomFichier){
     FILE* fichier = NULL;
     ptrLC lc= creer_encyclopedieLC();
     int * tailleAllou;
-    char * nomFichier = "B46_wikipedia_test.dat";
-
     fichier = fopen(nomFichier, "r");
-    tailleAllou = compteurLigne(nomFichier);
+    if(nomFichier=="B46_wikipedia_test.dat"){
+        tailleAllou = compteurLigne(nomFichier);
+    }
 
-
-    char str[120000];
+    char str[800000];
 
     if(fichier){
         char * element;
@@ -25,16 +24,10 @@ ptrLC lire_fichier(){
         int idArticle = 0;
         int i;
         int comptLigne=0;
-        while((fgets(str,120000,fichier)!=NULL)){
-            //printf("%s", str);
-            /*titreArticle = (char *) calloc(sizeof(char), 25);
-            contenuArticle = (char *) calloc(sizeof(char), 50000);*/
-            //printf("tailleAllou : %d\n",tailleAllou[comptLigne]);
-            //printf("%s\n",element);
+        while((fgets(str,800000,fichier)!=NULL)){
 
             Article * a = (Article*)malloc(sizeof(Article));
             a->id=atoi(strtok(str,"|"));
-            printf("strtok id : %d\n", a->id);
             i=0;
                 //element = strtok(NULL,"|");
 
@@ -43,14 +36,12 @@ ptrLC lire_fichier(){
                     titreArticle=strtok(NULL,"|");
                     a->titre = (char*) malloc(sizeof(char)*strlen(titreArticle)+1);
                     strcpy(a->titre, titreArticle);
-                    printf("strtok titre : %s\n", a->titre);
 
                     //a->contenu=(char *) malloc((sizeof(char)*strlen(element))+1);
                     //strcpy(a->contenu,element);
                     contenuArticle=strtok(NULL,"|");
                     a->contenu = (char*) malloc(sizeof(char)*strlen(contenuArticle)+1);
                     strcpy(a->contenu, contenuArticle);
-                    printf("strtok contenu : %s\n", a->contenu);
 
 
            /*a->id=idArticle;
@@ -62,7 +53,6 @@ ptrLC lire_fichier(){
             comptLigne++;
             i=0;
         }
-        printf("\n%d\n",comptLigne);
         //insererLC(lc, a);
     }
     else{
@@ -70,6 +60,98 @@ ptrLC lire_fichier(){
     }
     close(fichier);
     return lc;
+}
+
+EncyclopedieBST * lire_fichierBST(char * nomFichier){
+    FILE* fichier = NULL;
+    EncyclopedieBST * bst= creer_encyclopedieBST();
+    int * tailleAllou;
+
+    fichier = fopen(nomFichier, "r");
+    if(nomFichier=="B46_wikipedia_test.dat"){
+        tailleAllou = compteurLigne(nomFichier);
+    }
+
+
+    char str[800000];
+
+    if(fichier){
+        char * element;
+        char * titreArticle;
+        char * contenuArticle;
+        int idArticle = 0;
+        int i;
+        int comptLigne=0;
+        while((fgets(str,800000,fichier)!=NULL)){
+            Article * a = (Article*)malloc(sizeof(Article));
+            a->id=atoi(strtok(str,"|"));
+            i=0;
+
+            titreArticle=strtok(NULL,"|");
+            a->titre = (char*) malloc(sizeof(char)*strlen(titreArticle)+1);
+            strcpy(a->titre, titreArticle);
+
+            contenuArticle=strtok(NULL,"|");
+            a->contenu = (char*) malloc(sizeof(char)*strlen(contenuArticle)+1);
+            strcpy(a->contenu, contenuArticle);
+
+            bst = insererBST(bst,*a);
+            a=NULL;
+            comptLigne++;
+            i=0;
+        }
+    }
+    else{
+        printf("Erreur lecture fichier");
+    }
+    close(fichier);
+    return bst;
+}
+
+EncyclopedieHT * lire_fichierHT(char * nomFichier){
+    FILE* fichier = NULL;
+    EncyclopedieHT * ht= creer_encyclopedieHT(10);
+    int * tailleAllou;
+
+    fichier = fopen(nomFichier, "r");
+    if(nomFichier=="B46_wikipedia_test.dat"){
+        tailleAllou = compteurLigne(nomFichier);
+    }
+
+
+    char str[800000];
+
+    if(fichier){
+        char * element;
+        char * titreArticle;
+        char * contenuArticle;
+        int idArticle = 0;
+        int i;
+        int comptLigne=0;
+        while((fgets(str,800000,fichier)!=NULL)){
+            Article * a = (Article*)malloc(sizeof(Article));
+            a->id=atoi(strtok(str,"|"));
+            i=0;
+
+            titreArticle=strtok(NULL,"|");
+            a->titre = (char*) malloc(sizeof(char)*strlen(titreArticle)+1);
+            strcpy(a->titre, titreArticle);
+
+            contenuArticle=strtok(NULL,"|");
+            a->contenu = (char*) malloc(sizeof(char)*strlen(contenuArticle)+1);
+            strcpy(a->contenu, contenuArticle);
+
+            ht = insererHT(ht,*a);
+            a=NULL;
+            comptLigne++;
+            i=0;
+        }
+    }
+    else{
+        printf("Erreur lecture fichier");
+    }
+    close(fichier);
+    return ht;
 }
 
 int * compteurLigne(char * nomfichier){
@@ -87,23 +169,14 @@ int * compteurLigne(char * nomfichier){
         do{
             car=fgetc(fichier);
             cpt++;
-            //printf("%c", car);
             if(car=='\n'){
-                //printf("\n%d", nbLignes);
                 *tmp=cpt;
                 tmp++;
                 nbLignes++;
                 cpt=0;
             }
         }while(car!= EOF);
-        /*
-        int i;
-        for(i=0;i<500;i++){
-            printf("%d\n", tabTaille[i]);
-        }
-        */
 
-        //printf("nb lignes : %d", nbLignes);
         fclose(fichier);
         return tabTaille;
     }

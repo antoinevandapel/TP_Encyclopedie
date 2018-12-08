@@ -88,9 +88,11 @@ void detruire_bibliothequeLC(ptrLC e){
 }
 
 void afficherLC(ptrLC e){
+    if(e->article.id!=-1){
     printf("\n---- Article %d----",e->article.id);
     printf("\nTitre : %s",e->article.titre);
     printf("\nContenu : %s\n",e->article.contenu);
+    }
 
     if(e->suivant!=NULL){
         e=e->suivant;
