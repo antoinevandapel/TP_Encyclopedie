@@ -13,6 +13,10 @@ void affichageMenu()
 {
     int choixMenu;
 
+    clock_t begin;
+    clock_t end;
+    clock_t beginAll;
+    clock_t endAll;
 
     printf("---Menu---\n\n");
     printf("1.Liste chainee\n");
@@ -37,8 +41,133 @@ void affichageMenu()
         affichageMenu2(3);
         break;
     case 4:
-        printf("Résultat des tests :\n");
-        affichageMenu2(3);
+        printf("Debut du jeu de test:\n\n");
+        // Création d'un article permettant de tester l'insertion
+        Article * a = (Article*)malloc(sizeof(Article));
+        a->id=1;
+        a->contenu="Contenu Test";
+        a->titre="Titre Test";
+
+        ptrLC lc= creer_encyclopedieLC();
+        ptrLC searchlc= creer_encyclopedieLC();
+        EncyclopedieBST * bst= creer_encyclopedieBST();
+        EncyclopedieBST * searchbst= creer_encyclopedieBST();
+        EncyclopedieHT * ht= creer_encyclopedieHT(5);
+        EncyclopedieHT * searchht= creer_encyclopedieHT(5);
+
+        /*** Test pour liste chainée ***/
+        printf("---Liste chainee---\n");
+        beginAll = clock();
+
+        begin = clock();
+        lc = insererLC(lc,*a);
+        end = clock();
+        printf("Insertion d'un article : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        begin = clock();
+        lc = lire_fichierLC("B46_wikipedia_test.dat");
+        end = clock();
+        printf("Lecture du fichier wikipedia test : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        begin = clock();
+        lc = lire_fichierLC("B46_wikipedia_500K_random.dat");
+        end = clock();
+        printf("Lecture du fichier wikipedia random : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        /*begin = clock();
+        Article b = rechercher_articleLC(lc,3860272);
+        end = clock();
+        printf("Recherche d'un article par id : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
+
+        begin = clock();
+        searchlc = rechercher_article_plein_texteLC(lc,"Antoine");
+        end = clock();
+        printf("Recherche d'un mot: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        /*begin = clock();
+        lc = supprimerLC(lc,3860272);
+        end = clock();
+        printf("Suppression d'un article: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
+        endAll=clock();
+        printf("Temps total liste chainee: %f\n\n",(double)(endAll - beginAll)/CLOCKS_PER_SEC);
+        /*** Fin test pour liste chainée ***/
+
+        /*** Test pour arbre de recherche***/
+        printf("---Arbre de recherche---\n");
+        beginAll = clock();
+
+        begin = clock();
+        bst = insererBST(bst,*a);
+        end = clock();
+        printf("Insertion d'un article : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        begin = clock();
+        bst = lire_fichierBST("B46_wikipedia_test.dat");
+        end = clock();
+        printf("Lecture du fichier wikipedia test : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        begin = clock();
+        bst = lire_fichierBST("B46_wikipedia_500K_random.dat");
+        end = clock();
+        printf("Lecture du fichier wikipedia random : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        /*begin = clock();
+        Article b = rechercher_articleLC(lc,3860272);
+        end = clock();
+        printf("Recherche d'un article par id : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
+
+        begin = clock();
+        searchbst = rechercher_article_plein_texteBST(bst,searchbst,"Antoine");
+        end = clock();
+        printf("Recherche d'un mot: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        /*begin = clock();
+        lc = supprimerLC(lc,3860272);
+        end = clock();
+        printf("Suppression d'un article: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
+        endAll=clock();
+        printf("Temps total arbre de recherche: %f\n\n",(double)(endAll - beginAll)/CLOCKS_PER_SEC);
+        /*** Fin test pour arbre de recherche ***/
+
+        /*** Test pour table de hashage***/
+        printf("---Table de hashage---\n");
+        beginAll = clock();
+
+        begin = clock();
+        ht = insererHT(ht,*a);
+        end = clock();
+        printf("Insertion d'un article : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        begin = clock();
+        ht = lire_fichierHT("B46_wikipedia_test.dat");
+        end = clock();
+        printf("Lecture du fichier wikipedia test : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        begin = clock();
+        ht = lire_fichierHT("B46_wikipedia_500K_random.dat");
+        end = clock();
+        printf("Lecture du fichier wikipedia random : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        /*begin = clock();
+        Article b = rechercher_articleLC(lc,3860272);
+        end = clock();
+        printf("Recherche d'un article par id : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
+
+        begin = clock();
+        searchht = rechercher_article_plein_texteHT(ht,searchht,"Antoine");
+        end = clock();
+        printf("Recherche d'un mot: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
+
+        /*begin = clock();
+        lc = supprimerLC(lc,3860272);
+        end = clock();
+        printf("Suppression d'un article: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
+        endAll=clock();
+        printf("Temps total arbre de recherche: %f\n\n",(double)(endAll - beginAll)/CLOCKS_PER_SEC);
+        /*** Fin test pour table de hashage ***/
+
+
+        affichageMenu();
         break;
     default:
         affichageMenu();
