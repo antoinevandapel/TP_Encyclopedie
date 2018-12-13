@@ -84,6 +84,8 @@ ptrLC rechercher_article_plein_texteLC(ptrLC e, char * mot){
 void detruire_bibliothequeLC(ptrLC e){
     if(e->suivant!=NULL)
         detruire_bibliothequeLC(e->suivant);
+    free(e->article.titre);
+    free(e->article.contenu);
     free(e);
 }
 

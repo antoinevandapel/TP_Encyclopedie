@@ -170,6 +170,8 @@ void detruire_bibliothequeBST(EncyclopedieBST* e)
     {
         detruire_bibliothequeBST(e->left);
         detruire_bibliothequeBST(e->right);
+        free(e->article.titre);
+        free(e->article.contenu);
         free(e);
     }
 }

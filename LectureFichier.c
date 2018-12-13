@@ -15,7 +15,7 @@ ptrLC lire_fichierLC(char * nomFichier){
         tailleAllou = compteurLigne(nomFichier);
     }
 
-    char str[800000];
+    char str[1000000];
 
     if(fichier){
         char * element;
@@ -24,7 +24,7 @@ ptrLC lire_fichierLC(char * nomFichier){
         int idArticle = 0;
         int i;
         int comptLigne=0;
-        while((fgets(str,800000,fichier)!=NULL)){
+        while((fgets(str,1000000,fichier)!=NULL)){
 
             Article * a = (Article*)malloc(sizeof(Article));
             a->id=atoi(strtok(str,"|"));
@@ -73,7 +73,7 @@ EncyclopedieBST * lire_fichierBST(char * nomFichier){
     }
 
 
-    char str[800000];
+    char str[1000000];
 
     if(fichier){
         char * element;
@@ -82,7 +82,7 @@ EncyclopedieBST * lire_fichierBST(char * nomFichier){
         int idArticle = 0;
         int i;
         int comptLigne=0;
-        while((fgets(str,800000,fichier)!=NULL)){
+        while((fgets(str,1000000,fichier)!=NULL)){
             Article * a = (Article*)malloc(sizeof(Article));
             a->id=atoi(strtok(str,"|"));
             i=0;
@@ -110,7 +110,7 @@ EncyclopedieBST * lire_fichierBST(char * nomFichier){
 
 EncyclopedieHT * lire_fichierHT(char * nomFichier){
     FILE* fichier = NULL;
-    EncyclopedieHT * ht= creer_encyclopedieHT(10);
+    EncyclopedieHT * ht= creer_encyclopedieHT(100);
     int * tailleAllou;
 
     fichier = fopen(nomFichier, "r");
@@ -119,7 +119,7 @@ EncyclopedieHT * lire_fichierHT(char * nomFichier){
     }
 
 
-    char str[800000];
+    char str[1000000];
 
     if(fichier){
         char * element;
@@ -128,7 +128,7 @@ EncyclopedieHT * lire_fichierHT(char * nomFichier){
         int idArticle = 0;
         int i;
         int comptLigne=0;
-        while((fgets(str,800000,fichier)!=NULL)){
+        while((fgets(str,1000000,fichier)!=NULL)){
             Article * a = (Article*)malloc(sizeof(Article));
             a->id=atoi(strtok(str,"|"));
             i=0;

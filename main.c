@@ -70,7 +70,7 @@ void affichageMenu()
         printf("Lecture du fichier wikipedia test : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         begin = clock();
-        lc = lire_fichierLC("B46_wikipedia_500K_random.dat");
+        lc = lire_fichierLC("B46_wikipedia_500K_randomold.dat");
         end = clock();
         printf("Lecture du fichier wikipedia random : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
@@ -107,12 +107,12 @@ void affichageMenu()
         printf("Lecture du fichier wikipedia test : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         begin = clock();
-        bst = lire_fichierBST("B46_wikipedia_500K_random.dat");
+        bst = lire_fichierBST("B46_wikipedia_500K_randomold.dat");
         end = clock();
         printf("Lecture du fichier wikipedia random : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         /*begin = clock();
-        Article b = rechercher_articleLC(lc,3860272);
+        Article b = rechercher_articleBST(bst,3860272);
         end = clock();
         printf("Recherche d'un article par id : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
 
@@ -122,7 +122,7 @@ void affichageMenu()
         printf("Recherche d'un mot: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         /*begin = clock();
-        lc = supprimerLC(lc,3860272);
+        bst = supprimerBST(bst,3860272);
         end = clock();
         printf("Suppression d'un article: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
         endAll=clock();
@@ -144,12 +144,12 @@ void affichageMenu()
         printf("Lecture du fichier wikipedia test : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         begin = clock();
-        ht = lire_fichierHT("B46_wikipedia_500K_random.dat");
+        ht = lire_fichierHT("B46_wikipedia_500K_randomold.dat");
         end = clock();
         printf("Lecture du fichier wikipedia random : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         /*begin = clock();
-        Article b = rechercher_articleLC(lc,3860272);
+        Article b = rechercher_articleHT(ht,3860272);
         end = clock();
         printf("Recherche d'un article par id : %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
 
@@ -159,7 +159,7 @@ void affichageMenu()
         printf("Recherche d'un mot: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);
 
         /*begin = clock();
-        lc = supprimerLC(lc,3860272);
+        ht = supprimerHT(ht,3860272);
         end = clock();
         printf("Suppression d'un article: %f\n",(double)(end - begin)/CLOCKS_PER_SEC);*/
         endAll=clock();
@@ -179,11 +179,11 @@ void affichageMenu2(int type)
 {
     ptrLC lc= creer_encyclopedieLC();
     EncyclopedieBST * bst= creer_encyclopedieBST();
-    EncyclopedieHT * ht= creer_encyclopedieHT(10);
+    EncyclopedieHT * ht= creer_encyclopedieHT(100);
 
     EncyclopedieLC * searchLC = creer_encyclopedieLC();
     EncyclopedieBST * searchBST= creer_encyclopedieBST();
-    EncyclopedieHT * searchHT = creer_encyclopedieHT(10);
+    EncyclopedieHT * searchHT = creer_encyclopedieHT(100);
 
     clock_t begin;
     clock_t end;
@@ -286,15 +286,15 @@ void affichageMenu2(int type)
             printf("Lecture du fichier\n");
             begin = clock();
             if(type == 1){
-                lc = lire_fichierLC("B46_wikipedia_500K_random.dat");
+                lc = lire_fichierLC("B46_wikipedia_500K_randomold.dat");
                 encycloCreated=encycloCreated+500;
             }
             else if(type == 2){
-                bst = lire_fichierBST("B46_wikipedia_500K_random.dat");
+                bst = lire_fichierBST("B46_wikipedia_500K_randomold.dat");
                 encycloCreated=encycloCreated+500;
             }
             else if(type == 3){
-                ht = lire_fichierHT("B46_wikipedia_500K_random.dat");
+                ht = lire_fichierHT("B46_wikipedia_500K_randomold.dat");
                 encycloCreated=encycloCreated+500;
             }
             end = clock();
@@ -400,7 +400,7 @@ void affichageMenu2(int type)
             }
             break;
         case 8:
-            printf("Destruction de la bibliotheque");
+            printf("Destruction de la bibliotheque\n");
             if(encycloCreated >= 1){
                 if(type == 1){
                     detruire_bibliothequeLC(lc);
